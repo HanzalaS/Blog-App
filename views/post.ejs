@@ -1,17 +1,8 @@
 <%- include('partials/header'); -%>
 
-<h1><%= postTitle %></h1>
-<p
-  class="truncated"
-  style="
-    overflow: hidden;
-    display: block;
-    width: 50px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  "
->
-  <%= postBody %>
-</p>
+<div class="container">
+  <h1><%= postTitle %></h1>
+  <p><%= postBody %></p>
+</div>
 
 <%- include('partials/footer'); -%>
