@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+var _ = require("lodash");
+
 var posts = [];
 
 const homeStartingContent =
@@ -45,6 +47,19 @@ app.post("/compose", (req, res) => {
   };
   posts.push(composeData);
   res.redirect("/");
+});
+
+app.get("/posts/:newRoute", function (req, res) {
+  posts.forEach(function (post) {
+    let lowerTitle = _.lowerCase([post.titleInput]);
+    let lowerRoute = _.lowerCase([req.params.newRoute]);
+    if (lowerTitle === lowerRoute) {
+      res.render("post", {
+        postTitle: post.titleInput,
+        postBody: post.postInput,
+      });
+    }
+  });
 });
 
 app.listen(3000, function () {
